@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create DOM Elements</title>
+</head>
+
+<body>
+    <main id="app"></main>
+
+    <script>
+        const app = document.getElementById('app');
+
+        const title = createElement("h1", {class:"page-title", style: "color:darkblue; font-size:1.5rem;"}, "🐈 Cats Name")
+
+        const child1 = createElement('li', {class: "styles cat-1"}, "Milo");
+        const child2 = createElement('li', {class: "styles cat-2"}, "Charlie");
+        const child3 = createElement('li', {class: "styles cat-3"}, "Simba");
+        const child4 = createElement('li', {class: "styles cat-3"}, "Jack");
+
+        const ui = createElement('ui', {class: "cool"}, [child1, child2, child3, child4]);
+
+        app.appendChild(title);
+        app.appendChild(ui);
+
+        function createElement(tag = "", attributes = {}, innerContent) {
+            const element = document.createElement(tag);
+
+            if (Array.isArray(innerContent)) {
+
+                for (let node of innerContent) {
+                    element.appendChild(node);
+                }
+
+            } else {
+                element.textContent = innerContent;
+            }
+
+            for (let key in attributes) {
+                element.setAttribute(key, attributes[key]);
+            }
+
+            return element;
+        }
+
+    </script>
+</body>
+
+</html>
