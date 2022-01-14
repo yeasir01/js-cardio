@@ -14,34 +14,44 @@
     <script>
         const app = document.getElementById('app');
 
-        const title = createElement("h1", {class:"page-title", style: "color:darkblue; font-size:1.5rem;"}, "🐈 Cats Name")
+        const title = createElement("h1", { class: "page-title", style: "color:darkblue; font-size:1.5rem;" }, "🐈 Cats Name")
 
-        const child1 = createElement('li', {class: "styles cat-1"}, "Milo");
-        const child2 = createElement('li', {class: "styles cat-2"}, "Charlie");
-        const child3 = createElement('li', {class: "styles cat-3"}, "Simba");
-        const child4 = createElement('li', {class: "styles cat-3"}, "Jack");
+        const child1 = createElement('li', { class: "styles cat-1" }, "Milo");
+        const child2 = createElement('li', { class: "styles cat-2" }, "Charlie");
+        const child3 = createElement('li', { class: "styles cat-3" }, "Simba");
+        const child4 = createElement('li', { class: "styles cat-3" }, "Jack");
 
-        const ui = createElement('ui', {class: "cool"}, [child1, child2, child3, child4]);
+        const ui = createElement('ui', { class: "cool" }, [child1, child2, child3, child4]);
 
         app.appendChild(title);
         app.appendChild(ui);
 
+        function isHTMLEntity(html) {
+            return html?.charAt(0) === '&' && html?.charAt(html.length - 1) === ';';
+        }
+
         function createElement(tag = "", attributes = {}, innerContent) {
             const element = document.createElement(tag);
 
-            if (Array.isArray(innerContent)) {
-
-                for (let node of innerContent) {
-                    element.appendChild(node);
-                }
-
-            } else {
-                element.textContent = innerContent;
-            }
+            switch (true) {
+                case Array.isArray(innerContent):
+                    for (let node of innerContent) {
+                        element.appendChild(node);
+                    }
+                    break;
+                case isHTMLEntity(innerContent):
+                    element.innerHTML = innerContent;
+                    break;
+                case innerContent !== undefined || innerContent !== "":
+                    element.textContent = innerContent;
+                    break;
+                default:
+                    break;
+            };
 
             for (let key in attributes) {
                 element.setAttribute(key, attributes[key]);
-            }
+            };
 
             return element;
         }
