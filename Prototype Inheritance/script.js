@@ -23,16 +23,3 @@ const account = new BankAccount(300);
 account
     .deposit(10) //prints 310
     .withdraw(110) //prints 200
-
-
-//////////// EXAMPLE TWO //////////////////
-
-const MyNameIs = function(){
-    this.name = ""
-}
-
-MyNameIs.name = "YMH";
-
-const name = new MyNameIs();
-
-console.log(name)

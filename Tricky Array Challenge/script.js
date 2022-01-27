@@ -1,4 +1,5 @@
-//Challenge: consolidate all arrays into one table
+// Challenge: Consolidate all relational data from three arrays into 1 table. Log the table to the console.
+// There should not be any duplicates in your table.
 
 const arr1 = [
     ["name", "id", "age", "weight", "Cool"],
@@ -37,4 +38,25 @@ function parseArray(arry) {
 
 const combined = [...parseArray(arr1), ...parseArray(arr2), ...parseArray(arr3)];
 
-console.table(combined)
+//Method 1 Reduce Method
+console.time("reduce-method");
+
+const results = combined.reduce((acc, currentPerson) => {
+    const idx = acc.findIndex(obj => obj.id === currentPerson.id)
+
+    if (idx === -1) {
+        return [...acc, currentPerson]
+    }
+
+    acc[idx] = {...acc[idx], ...currentPerson}
+    return acc
+},[]);
+
+console.table(results);
+console.timeEnd("reduce-method");
+
+
+//Method 2 Map
+console.time("map-method");
+//code here
+console.timeEnd("map-method");
