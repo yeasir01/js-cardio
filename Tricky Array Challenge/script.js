@@ -1,5 +1,7 @@
-// Challenge: Consolidate all relational data from three arrays into 1 table. Log the table to the console.
-// There should not be any duplicates in your table.
+/* ---Challenge---- */
+// Consolidate all relational data from three different arrays into 1 table. 
+// Log the table to the console.
+// There should not be any duplicate person's in your table.
 
 const arr1 = [
     ["name", "id", "age", "weight", "Cool"],
@@ -56,7 +58,7 @@ console.table(results);
 console.timeEnd("reduce-method");
 
 
-//Method 2 Map
+//Method 2 Map or Loop
 console.time("map-method");
-//code here
+//code coming soon....
 console.timeEnd("map-method");
