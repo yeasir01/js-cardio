@@ -1,7 +1,17 @@
-/* ---Challenge---- */
-// Consolidate all relational data from three different arrays into 1 table. 
-// Log the table to the console.
-// There should not be any duplicate person's in your table.
+/* 
+    ----Challenge----
+    Consolidate all related data from the three different arrays. 
+    Log the data to a console.table().
+    There should not be any duplicate person's in your table.
+
+    
+    Desired Output
+    idx  name   id  age    weight   Cool   height  parent
+    0	'Susan'	'3'	'20'	'120'	true	'48'	
+    1	'John'	'1'	'21'	'150'	true	'45'	'yes'
+    2	'Bob'	'2'	'23'	'90'	false	'50'	'yes'
+    3	'Ben'	'4'	'20'	'100'	true	'43'	
+*/
 
 const arr1 = [
     ["name", "id", "age", "weight", "Cool"],
@@ -40,25 +50,16 @@ function parseArray(arry) {
 
 const combined = [...parseArray(arr1), ...parseArray(arr2), ...parseArray(arr3)];
 
-//Method 1 Reduce Method
-console.time("reduce-method");
-
 const results = combined.reduce((acc, currentPerson) => {
     const idx = acc.findIndex(obj => obj.id === currentPerson.id)
 
     if (idx === -1) {
         return [...acc, currentPerson]
     }
-
+    
     acc[idx] = {...acc[idx], ...currentPerson}
+
     return acc
 },[]);
 
 console.table(results);
-console.timeEnd("reduce-method");
-
-
-//Method 2 Map or Loop
-console.time("map-method");
-//code coming soon....
-console.timeEnd("map-method");
