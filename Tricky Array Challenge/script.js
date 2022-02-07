@@ -14,7 +14,7 @@
 */
 
 const arr1 = [
-    ["name", "id", "age", "weight", "Cool"],
+    ["name", "id", "age", "weight", "cool"],
     ["Susan", "3", "20", "120", true],
     ["John", "1", "21", "150", true],
     ["Bob", "2", "23", "90", false],
@@ -48,9 +48,9 @@ function parseArray(arry) {
     return peeople;
 }
 
-const combined = [...parseArray(arr1), ...parseArray(arr2), ...parseArray(arr3)];
+const allData = [...parseArray(arr1), ...parseArray(arr2), ...parseArray(arr3)];
 
-const results = combined.reduce((acc, currentPerson) => {
+const combined = allData.reduce((acc, currentPerson) => {
     const idx = acc.findIndex(obj => obj.id === currentPerson.id)
 
     if (idx === -1) {
@@ -62,4 +62,4 @@ const results = combined.reduce((acc, currentPerson) => {
     return acc
 },[]);
 
-console.table(results);
+console.table(combined);
