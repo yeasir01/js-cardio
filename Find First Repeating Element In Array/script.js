@@ -1,22 +1,21 @@
-const intArry = [1, 2, 3, 10, 4, 8, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-const stringArry = ["cat", "dog", "mongoose", "snake", "mongoose", "snake"];
+const numbers = [1, 2, 3, 10, 4, 8, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const animals = ["cat", "dog", "mongoose", "snake", "mongoose", "snake"];
+const norepeat = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-function getFirstRepeatingElement(arry = []) {
-    let currentIndex = 0;
-    let duplicate;
+function findFirstRepeatingElement(arry = []) {
+    const set = new Set();
 
-    while (!duplicate) {
-        for (let i = currentIndex + 1; i < arry.length; i++){
-            if (arry[currentIndex] === arry[i]){
-                duplicate = arry[i];
-                break;
-            }
+    for (let i = 0; i < arry.length; i++) {
+        if (set.has(arry[i])) {
+            return arry[i]
+        } else {
+            set.add(arry[i])
         }
-        currentIndex++;
     }
 
-    return duplicate;
-};
+    return -1;
+}
 
-console.log(getFirstRepeatingElement(intArry)); //prints 10
-console.log(getFirstRepeatingElement(stringArry)); //prints "mongoose"
+console.log(findFirstRepeatingElement(numbers)); //prints 8
+console.log(findFirstRepeatingElement(animals)); //prints "mongoose"
+console.log(findFirstRepeatingElement(norepeat)); //prints -1
